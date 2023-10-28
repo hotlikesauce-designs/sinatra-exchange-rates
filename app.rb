@@ -29,10 +29,16 @@ end
 get("/:currency_from/:currency_to") do
   raw_api_data = HTTP.get(api_url)
   parsed_api_data = JSON.parse(raw_api_data)
+
   @currencies = parsed_api_data["currencies"]
   
   @currency_from = params.fetch("currency_from")
   @currency_to = params.fetch("currency_to")
-
+  
+  exchange_api_url = "https://api.exchangerate.host/convert?access_key=#{ENV["EXCHANGE_RATE_KEY"]}&from=#{@currency_from}&to=#{@currency_to}&amount=1"
+  raw_exchange_api_data = HTTP.get(exchange_api_url) 
+  parsed_exchange_api_data = JSON.parse(raw_exchange_api_data)
+  #pp parsed_exchange_api_data
+  @final_fx = parsed_exchange_api_data.fetch("result")
   erb(:currency_to)
 end

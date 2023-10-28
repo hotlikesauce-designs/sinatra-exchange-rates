@@ -1,7 +1,7 @@
-<%= params %>
+<!--<%= params %>-->
 
 <h1>Convert <%=params.fetch("currency_from")%> to <%= params.fetch("currency_to") %></h1>
 
-<p>1 <%=params.fetch("currency_from")%> equals 27.213813 <%=params.fetch("currency_to")%>.</p>
+<p>1 <%=params.fetch("currency_from")%> equals <%=@final_fx%> <%=params.fetch("currency_to")%>.</p>
 
 <p>Go <a href="/<%= params.fetch("currency_from") %>">back</a>.</p>
