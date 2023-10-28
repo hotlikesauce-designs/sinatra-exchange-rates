@@ -14,6 +14,10 @@ get("/") do
   @raw_api_data = HTTP.get(api_url)
   @parsed_api_data = JSON.parse(@raw_api_data)
   @currencies = @parsed_api_data["currencies"]
-
   erb(:homepage)
+end
+
+get("/:first_page") do
+
+  erb(:first_page)
 end
